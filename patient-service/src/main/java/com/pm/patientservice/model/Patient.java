@@ -1,4 +1,4 @@
-package com.pm.patient_service.model;
+package com.pm.patientservice.model;
 
 import java.time.LocalDate;
 import java.util.UUID;

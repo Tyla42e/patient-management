@@ -1,15 +1,16 @@
-package com.pm.patient_service.repository;
+package com.pm.patientservice.repository;
 
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pm.patient_service.dto.PatientResponseDTO;
-import com.pm.patient_service.model.Patient;
+import com.pm.patientservice.model.Patient;
+import java.util.Optional;
+
 
 @Repository
 public interface PatientRespository extends JpaRepository<Patient,UUID>{
-    //public PatientResponseDTO findByID(UUID id) ;
+    public Optional<Patient> findById(UUID id);
     
 }
