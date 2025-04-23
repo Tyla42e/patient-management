@@ -1,56 +1,80 @@
 package com.pm.patientservice.service;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import com.pm.patientservice.dto.PatientResponseDTO;
+import com.pm.patientservice.exception.EmailAlreadyExistsException;
+import com.pm.patientservice.exception.PatientNotFoundException;
 import com.pm.patientservice.dto.PatientRequestDTO;
 import com.pm.patientservice.mapper.PatientMapper;
 import com.pm.patientservice.model.Patient;
-import com.pm.patientservice.repository.PatientRespository;
-
-import lombok.AllArgsConstructor;
+import com.pm.patientservice.repository.PatientRepository;
 
 @Service
-@AllArgsConstructor
 public class PatientService {
 
-    private final PatientRespository _patientRespository;
+    private final PatientRepository patientRepository;
+
+    public PatientService(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
 
     public List<PatientResponseDTO> getAllPatients() {
-        List<Patient> patients = _patientRespository.findAll();
+        List<Patient> patients = patientRepository.findAll();
 
         List<PatientResponseDTO> patientsDTO = patients.stream().map(PatientMapper::toDTO).toList();
         return patientsDTO;
     }
 
-    public PatientResponseDTO getPatientById(UUID id) throws BadRequestException
-    {
-        Optional<Patient> patient = _patientRespository.findById(id);
-        if (!patient.isPresent()) {
-            throw new BadRequestException("Patient Not Found");
-        }
+    public PatientResponseDTO getPatientById(UUID id) {
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new PatientNotFoundException("Patient not found with ID: " + id));
 
-        return PatientMapper.toDTO(patient.get());
+        return PatientMapper.toDTO(patient);
 
     }
 
     public PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO) {
-        return null;
+
+        if (patientRepository.existsByEmail(patientRequestDTO.getEmail())) {
+            throw new EmailAlreadyExistsException(
+                    "A patient with this email " + "already exists"
+                            + patientRequestDTO.getEmail());
+        }
+
+        Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
+        return PatientMapper.toDTO(newPatient);
     }
 
-    public PatientResponseDTO updatePatient(PatientRequestDTO patientRequestDTO) {
-        return null;
+    public PatientResponseDTO updatePatient(UUID id, PatientRequestDTO patientRequestDTO) {
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new PatientNotFoundException("Patient not found with ID: " + id));
+
+        if (patientRepository.existsByEmailAndIdNot(patient.getEmail(), id)) {
+            throw new EmailAlreadyExistsException(
+                    "A patient with this email address already exists: " + patient.getEmail());
+        }
+
+        patient.setName(patientRequestDTO.getName());
+        patient.setAddress(patientRequestDTO.getAddress());
+        patient.setEmail(patientRequestDTO.getEmail());
+        patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth()));
+
+        Patient updatedPatient = patientRepository.save(patient);
+
+        return PatientMapper.toDTO(updatedPatient);
     }
 
-    public PatientResponseDTO deletePatient(UUID id) {
-        return null;
-    }
+    public void deletePatient(UUID id) {
+        patientRepository.findById(id)
+                .orElseThrow(() -> new PatientNotFoundException("Patient not found with ID: " + id));
 
-    
+        patientRepository.deleteById(id);
+
+    }
 
 }

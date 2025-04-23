@@ -7,8 +7,11 @@ import com.pm.patientservice.dto.PatientRequestDTO;
 import com.pm.patientservice.dto.PatientResponseDTO;
 import com.pm.patientservice.service.PatientService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,46 +27,55 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/api/v1/patient/")
+@RequestMapping("/api/v1/patients")
 @Data
+@Tag(name = "Patient", description = "API for managing Patients")
 public class PatientController {
 
-    private final PatientService _PatientService;
+    private final PatientService patientService;
 
     @GetMapping
+    @Operation(summary = "Get All Patients")
     public ResponseEntity<List<PatientResponseDTO>> getAllPatients() {
-        List<PatientResponseDTO> patients = _PatientService.getAllPatients();
+        List<PatientResponseDTO> patients = patientService.getAllPatients();
 
         return ResponseEntity.ok().body(patients);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get Patient by ID")
     public ResponseEntity<PatientResponseDTO> getPatientById(@PathVariable UUID id) throws BadRequestException {
         // Check to see if record exists
 
-        PatientResponseDTO response = _PatientService.getPatientById(id);
+        PatientResponseDTO response = patientService.getPatientById(id);
         return ResponseEntity.ok().body(response );
     }
 
     @PostMapping
-    public ResponseEntity<PatientResponseDTO> AddPatient(@RequestBody PatientRequestDTO patient) {
-        //TODO: process POST request
-
-
+    @Operation(summary = "Create a new Patient")
+    public ResponseEntity<PatientResponseDTO> createPatient(@RequestBody PatientRequestDTO patient) {
         
-        return null;
+        PatientResponseDTO response = patientService.createPatient(patient);
+
+        URI location = URI.create("/api/v1/patients/" + response.getId());
+        
+        return ResponseEntity.created(location).body(response);
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update existing patient")
     public ResponseEntity<PatientResponseDTO> updatePatient(@PathVariable UUID id, @RequestBody PatientRequestDTO entity) {
-        //TODO: process PUT request
+        PatientResponseDTO response = patientService.updatePatient(id,entity);
         
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePatient(@PathVariable UUID id) {
-        return ResponseEntity.ok("Patient Delete");
+    @Operation(summary = "Delete a Patient")
+    public ResponseEntity<Void> deletePatient(@PathVariable UUID id) {
+        patientService.deletePatient(id);
+        return ResponseEntity.noContent().build();
+       
     }
     
 }
