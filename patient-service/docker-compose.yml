@@ -1,0 +1,44 @@
+services:
+  patient_service_db:
+    container_name: patient_service_db
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: admin_user
+    image: postgres:latest
+    networks:
+      - internal
+    ports:
+      - mode: ingress
+        target: 5432
+        published: 5000
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: pgdata
+        target: /var/lib/postgresql/data
+        bind:
+          create_host_path: true
+  patient-service:
+    container_name: patient-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://patient_service_db:5432/db
+      SPRING_DATASOURCE_USERNAME: admin_user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DLL_AUTO: update
+      SPRING_SQL_INIT_MODE: always 
+    image: tyla42e/patient-service:latest
+    networks:
+      - internal
+    ports:
+      - mode: ingress
+        target: 4000
+        published: 4000
+        protocol: tcp
+    depends_on:
+      -  patient_service_db
+
+networks:
+  internal:
+    driver: bridge
