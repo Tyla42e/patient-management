@@ -28,6 +28,8 @@ services:
       SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.postgresql.Driver
       SPRING_JPA_HIBERNATE_DLL_AUTO: update
       SPRING_SQL_INIT_MODE: always 
+      BILLING_SERVICE_ADDRESS: billing-service
+      BILLING_SERVICE_GRPC_PORT: 9001
     image: tyla42e/patient-service:latest
     networks:
       - internal
