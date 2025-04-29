@@ -7,15 +7,18 @@ package patient.events;
 /**
  * Protobuf type {@code patient.events.PatientEvent}
  */
+@SuppressWarnings("deprecation")
 public final class PatientEvent extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:patient.events.PatientEvent)
     PatientEventOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use PatientEvent.newBuilder() to construct.
-  private PatientEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  @SuppressWarnings("deprecation")
+  private PatientEvent(@SuppressWarnings("deprecation") com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
+  @SuppressWarnings("deprecation")
   private PatientEvent() {
     patientId_ = "";
     name_ = "";
@@ -26,7 +29,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
+      @SuppressWarnings("deprecation") UnusedPrivateParameter unused) {
     return new PatientEvent();
   }
 
@@ -35,6 +38,7 @@ private static final long serialVersionUID = 0L;
     return patient.events.PatientEventOuterClass.internal_static_patient_events_PatientEvent_descriptor;
   }
 
+  @SuppressWarnings("deprecation")
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
@@ -210,6 +214,7 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
+  @SuppressWarnings("deprecation")
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
@@ -228,6 +233,7 @@ private static final long serialVersionUID = 0L;
     getUnknownFields().writeTo(output);
   }
 
+  @SuppressWarnings("deprecation")
   @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
@@ -273,6 +279,7 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
+  @SuppressWarnings("unchecked")
   @java.lang.Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
@@ -325,11 +332,13 @@ private static final long serialVersionUID = 0L;
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
+  @SuppressWarnings("deprecation")
   public static patient.events.PatientEvent parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
+  @SuppressWarnings("deprecation")
   public static patient.events.PatientEvent parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -338,12 +347,14 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  @SuppressWarnings("deprecation")
   public static patient.events.PatientEvent parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
+  @SuppressWarnings("deprecation")
   public static patient.events.PatientEvent parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -351,12 +362,14 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
+  @SuppressWarnings("deprecation")
   public static patient.events.PatientEvent parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
+  @SuppressWarnings("deprecation")
   public static patient.events.PatientEvent parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -381,13 +394,14 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      @SuppressWarnings("deprecation") com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
   /**
    * Protobuf type {@code patient.events.PatientEvent}
    */
+  @SuppressWarnings("deprecation")
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:patient.events.PatientEvent)
@@ -397,6 +411,7 @@ private static final long serialVersionUID = 0L;
       return patient.events.PatientEventOuterClass.internal_static_patient_events_PatientEvent_descriptor;
     }
 
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -406,15 +421,18 @@ private static final long serialVersionUID = 0L;
     }
 
     // Construct using patient.events.PatientEvent.newBuilder()
+    @SuppressWarnings("deprecation")
     private Builder() {
 
     }
 
+    @SuppressWarnings("deprecation")
     private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        @SuppressWarnings("deprecation") com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
 
     }
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -470,32 +488,38 @@ private static final long serialVersionUID = 0L;
       }
     }
 
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public Builder clone() {
       return super.clone();
     }
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
@@ -884,12 +908,14 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 
+    @SuppressWarnings("deprecation")
     @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

@@ -4,6 +4,7 @@
 // Protobuf Java Version: 3.25.5
 package patient.events;
 
+@SuppressWarnings("deprecation")
 public final class PatientEventOuterClass {
   private PatientEventOuterClass() {}
   public static void registerAllExtensions(
@@ -17,6 +18,7 @@ public final class PatientEventOuterClass {
   }
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_patient_events_PatientEvent_descriptor;
+  @SuppressWarnings("deprecation")
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_patient_events_PatientEvent_fieldAccessorTable;
