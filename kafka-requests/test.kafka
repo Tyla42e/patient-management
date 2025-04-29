@@ -1,0 +1,5 @@
+PRODUCER non-keyed-json-message
+topic: patient
+{
+    "type": "mRandom - {{random.number}}"
+}

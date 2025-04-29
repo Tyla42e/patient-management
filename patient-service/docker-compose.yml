@@ -1,24 +1,4 @@
 services:
-  patient_service_db:
-    container_name: patient_service_db
-    environment:
-      POSTGRES_DB: db
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: admin_user
-    image: postgres:latest
-    networks:
-      - internal
-    ports:
-      - mode: ingress
-        target: 5432
-        published: 5000
-        protocol: tcp
-    volumes:
-      - type: bind
-        source: pgdata
-        target: /var/lib/postgresql/data
-        bind:
-          create_host_path: true
   patient-service:
     container_name: patient-service
     environment:
@@ -30,17 +10,13 @@ services:
       SPRING_SQL_INIT_MODE: always 
       BILLING_SERVICE_ADDRESS: billing-service
       BILLING_SERVICE_GRPC_PORT: 9001
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     image: tyla42e/patient-service:latest
     networks:
       - internal
     ports:
-      - mode: ingress
-        target: 4000
-        published: 4000
-        protocol: tcp
-    depends_on:
-      -  patient_service_db
+      - 4000:4000
 
 networks:
   internal:
-    driver: bridge
+    external: true

@@ -10,11 +10,11 @@ services:
       SPRING_SQL_INIT_MODE: always 
     image: tyla42e/billing-service:latest
     networks:
-      - patient-service_internal
+      - internal
     ports:
       - 4001:4001
       - 9001:9001
 
 networks:
-  patient-service_internal:
+  internal:
     external: true
