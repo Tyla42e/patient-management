@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.pm.patientservice.dto.PatientResponseDTO;
@@ -19,14 +22,16 @@ import com.pm.patientservice.repository.PatientRepository;
 @Service
 public class PatientService {
 
+    private static final Logger log = LoggerFactory.getLogger(PatientService.class);
+
     private final PatientRepository patientRepository;
     private final BillingServiceGrpcClient billingServiceGrpcClient;
     private final KafkaProducer kafkaProducer;
 
-    public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient) {
+    public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient, KafkaProducer kafkaProducer) {
         this.patientRepository = patientRepository;
         this.billingServiceGrpcClient = billingServiceGrpcClient;
-        this.kafkaProducer = null;
+        this.kafkaProducer = kafkaProducer;
     }
 
     public List<PatientResponseDTO> getAllPatients() {
@@ -55,12 +60,14 @@ public class PatientService {
         //save new patient in database
         Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
 
+           
+        // Send message to Kafka
+        log.info("Sending event to Kafka.... ");
+        kafkaProducer.sendEvent(newPatient);
+        log.info("Event Sent!!!");
+
         // Call billing service via GRPC
         billingServiceGrpcClient.createBillingAccount(newPatient.getId().toString(),newPatient.getName(), newPatient.getEmail());
-
-        // Send message to Kafka
-        kafkaProducer.sendEvent(newPatient);
-        
         return PatientMapper.toDTO(newPatient);
     }
 
