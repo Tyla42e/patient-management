@@ -1,0 +1,13 @@
+services:
+  api-gateway:
+    container_name: api-gateway
+    image: tyla42e/api-gateway:latest
+    pull_policy: if_not_present
+    networks:
+      - internal
+    ports:
+      - 4004:4004
+
+networks:
+  internal:
+    external: true

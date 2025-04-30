@@ -34,9 +34,13 @@ public class PatientService {
     }
 
     public List<PatientResponseDTO> getAllPatients() {
+
+        log.info("getAllPatients() service called");
         List<Patient> patients = patientRepository.findAll();
 
         List<PatientResponseDTO> patientsDTO = patients.stream().map(PatientMapper::toDTO).toList();
+
+        log.info("returning %d items ",patientsDTO.size());
         return patientsDTO;
     }
 

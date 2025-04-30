@@ -6,6 +6,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: admin_user
     image: postgres:latest
+    pull_policy: if_not_present
     networks:
       - internal
     ports:
@@ -27,6 +28,7 @@ services:
       KAFKA_CFG_NODE_ID: 0
       KAFKA_CFG_PROCESS_ROLES: controller,broker
     image: bitnami/kafka
+    pull_policy: if_not_present
     ports:
       - 9092:9092
       - 9094:9094

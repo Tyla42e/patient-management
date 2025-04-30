@@ -9,6 +9,7 @@ services:
       SPRING_JPA_HIBERNATE_DLL_AUTO: update
       SPRING_SQL_INIT_MODE: always 
     image: tyla42e/billing-service:latest
+    pull_policy: if_not_present
     networks:
       - internal
     ports:

@@ -4,6 +4,7 @@ services:
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     image: tyla42e/analytics-service:latest
+    pull_policy: if_not_present
     networks:
       - internal
     ports:
