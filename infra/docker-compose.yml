@@ -17,6 +17,24 @@ services:
         target: /var/lib/postgresql/data
         bind: 
           create_host_path: true
+  auth_service_db:
+    container_name: auth_service_db
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: admin_user
+    image: postgres:latest
+    pull_policy: if_not_present
+    networks:
+      - internal
+    ports:
+      - 5001:5432
+    volumes:
+      - type: bind
+        source: pgdata-auth
+        target: /var/lib/postgresql/data
+        bind: 
+          create_host_path: true
   kafka:
     container_name: kafka
     environment:

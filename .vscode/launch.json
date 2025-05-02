@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AuthServiceApplication",
+            "request": "launch",
+            "mainClass": "com.pm.authservice.AuthServiceApplication",
+            "projectName": "auth-service"
+        },
+        {
+            "type": "java",
             "name": "AnalyticsServiceApplication",
             "request": "launch",
             "mainClass": "com.pm.analytics_service.AnalyticsServiceApplication",

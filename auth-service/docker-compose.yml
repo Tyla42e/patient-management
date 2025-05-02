@@ -1,0 +1,21 @@
+services:
+  auth-service:
+    container_name: auth-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://auth_service_db:5432/db
+      SPRING_DATASOURCE_USERNAME: admin_user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DLL_AUTO: update
+      SPRING_SQL_INIT_MODE: always 
+      JWT_SECRET: jwt.secret=eW91dGhlcXVhdG9yc3BlZWR3aXRoaW5mcmVld2hpc3RsZWxvdmVseXp1bHVnYWluZm9ydHlncm91bmR1bml2ZXJzZXRhcGVjdXJpb3VzcGFyZW50YnVzZm9yd2FyZGdpZnRob3VzZWxvZ3doYXRldmVycHJlc3NhcHByb3ByaWF0ZXJhdGVob2xkcGFwZXJhY2NvcmRpbmdjYXBpdGFsbGlzdHN0aWZmYmFzaXNmYXJtZXJtaW5kdHJpcHRoaXNncmFpbmdpdmluZ3dvcnRocmlkZWZhbGxlc3RhYmxpc2hwZXJjZW50cmlkZWdyYXBodGhhbnBlbmNpbHNlbnRlbg==
+    image: tyla42e/auth-service:latest
+    pull_policy: if_not_present
+    networks:
+      - internal
+    ports:
+      - 4005:4005
+
+networks:
+  internal:
+    external: true
