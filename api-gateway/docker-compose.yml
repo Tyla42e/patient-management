@@ -3,6 +3,8 @@ services:
     container_name: api-gateway
     image: tyla42e/api-gateway:latest
     pull_policy: if_not_present
+    environment:
+      - AUTH_SERVICE_URL=http://auth-service:4005
     networks:
       - internal
     ports:

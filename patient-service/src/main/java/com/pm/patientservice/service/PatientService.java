@@ -40,7 +40,7 @@ public class PatientService {
 
         List<PatientResponseDTO> patientsDTO = patients.stream().map(PatientMapper::toDTO).toList();
 
-        log.info("returning %d items ",patientsDTO.size());
+        log.info("returning {} items ",patientsDTO.size());
         return patientsDTO;
     }
 

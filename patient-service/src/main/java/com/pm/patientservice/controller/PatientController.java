@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/api/v1/patients")
+@RequestMapping("/v1/patients")
 @Data
 @Tag(name = "Patient", description = "API for managing Patients")
 public class PatientController {
