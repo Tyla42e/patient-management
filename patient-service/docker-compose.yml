@@ -13,6 +13,8 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     image: tyla42e/patient-service:latest
     pull_policy: if_not_present
+    ports:
+      - 4000:4000
     networks:
       - internal
 

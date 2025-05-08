@@ -33,6 +33,7 @@
 		<protobuf-java.version>3.25.6</protobuf-java.version>
 		<spring-grpc.version>0.7.0</spring-grpc.version>
 		<protoc.version>3.21.12</protoc.version>
+		<spring-cloud.version>2024.0.1</spring-cloud.version>
 	</properties>
 	<dependencies>
 
@@ -132,6 +133,20 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>8.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>4.2.1</version>
 		</dependency>
 	</dependencies>
 
