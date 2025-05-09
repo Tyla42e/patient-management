@@ -1,7 +1,0 @@
-com/pm/analytics_service/kafka/KafkaConsumer.class
-com/pm/analytics_service/AnalyticsServiceApplication.class
-patient/events/PatientEvent$Builder.class
-patient/events/PatientEvent$1.class
-patient/events/PatientEventOuterClass.class
-patient/events/PatientEvent.class
-patient/events/PatientEventOrBuilder.class

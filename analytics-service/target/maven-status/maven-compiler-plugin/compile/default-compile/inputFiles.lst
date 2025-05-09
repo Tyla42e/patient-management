@@ -1,5 +1,0 @@
-/home/tyla42e/dev/springboot/patient-management/analytics-service/src/main/java/com/pm/analytics_service/AnalyticsServiceApplication.java
-/home/tyla42e/dev/springboot/patient-management/analytics-service/src/main/java/com/pm/analytics_service/kafka/KafkaConsumer.java
-/home/tyla42e/dev/springboot/patient-management/analytics-service/target/generated-sources/protobuf/java/patient/events/PatientEvent.java
-/home/tyla42e/dev/springboot/patient-management/analytics-service/target/generated-sources/protobuf/java/patient/events/PatientEventOrBuilder.java
-/home/tyla42e/dev/springboot/patient-management/analytics-service/target/generated-sources/protobuf/java/patient/events/PatientEventOuterClass.java
