@@ -39,4 +39,14 @@ spring:
           filters:
             - StripPrefix=1
         
-          
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: INFO
+      com:
+        pm:
+          apigateway: DEBUG
+    file:
+      name: logs/analyticsservice.log          

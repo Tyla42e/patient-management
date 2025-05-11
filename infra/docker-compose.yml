@@ -10,7 +10,7 @@ services:
     networks:
       - internal
     ports:
-      - 5000:5432
+      - 5002:5432
     volumes:
       - type: bind
         source: pgdata
@@ -52,8 +52,41 @@ services:
       - 9094:9094
     networks:
       - internal
-  
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: bitnami/elasticsearch
+    pull_policy: if_not_present
+    ports:
+      - 9200:9200
+    networks:
+      - internal
+  logstash:
+    container_name: logstash
+    image: bitnami/logstash
+    volumes:
+      - ./logstash/logstash.conf:/opt/bitnami/logstash/pipeline/logstash.conf
+    ports:
+      - 5000:5000
+    networks:
+      - internal
+  kibana:
+    container_name: kibana
+    image: bitnami/kibana
+    pull_policy: if_not_present
+    ports:
+      - 5601:5601
+    networks:
+      - internal
+
 networks:
   internal:
     name: internal
     driver: bridge
+
+volumes:
+  logstash-data:
+    name: logstash-data
+      - ./logstash/logstash.conf
+
+      

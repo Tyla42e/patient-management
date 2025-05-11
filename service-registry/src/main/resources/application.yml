@@ -4,3 +4,11 @@ eureka:
     fetch-registry: false
 server:
   port: 8761  
+
+
+logging:
+  level: 
+    root: info
+  file:
+    path: /var/log/
+    name: serviceregistry.log

@@ -1,0 +1,15 @@
+<configuration>
+  <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+  <property resource="application.properties"/>
+  <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <destination>logstash:5000</destination>
+    <remoteHost>logstash</remoteHost>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <customFields>{"applicationName":"${applicationName}"}</customFields>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="LOGSTASH" />
+  </root>
+</configuration>
