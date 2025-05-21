@@ -1,10 +1,12 @@
 HELP.md
 target/
-
+newrelic/
+**/*.log
+**/*.lst
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-
+logs/
 ### STS ###
 .apt_generated
 .classpath
