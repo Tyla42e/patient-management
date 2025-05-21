@@ -1,5 +1,7 @@
 services:
   patient-service:
+    depends_on:
+      - patient_service_db
     container_name: patient-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://patient_service_db:5432/db
@@ -17,7 +19,25 @@ services:
       - 4000:4000
     networks:
       - internal
-
+  
+  patient_service_db:
+    container_name: patient_service_db
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: admin_user
+    image: postgres:latest
+    pull_policy: if_not_present
+    networks:
+      - internal
+    ports:
+      - 5002:5432
+    volumes:
+      - type: bind
+        source: pgdata
+        target: /var/lib/postgresql/data
+        bind: 
+          create_host_path: true
 networks:
   internal:
     external: true

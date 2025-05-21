@@ -5,11 +5,23 @@
     <destination>logstash:5000</destination>
     <remoteHost>logstash</remoteHost>
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+        <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSX</timestampFormat>
+        <timestampFormatTimezoneId>Etc/UTC</timestampFormatTimezoneId>
+        <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+          <prettyPrint>true</prettyPrint>
+        </jsonFormatter>
+      </layout>
       <customFields>{"applicationName":"${applicationName}"}</customFields>
     </encoder>
   </appender>
-
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
   <root level="INFO">
     <appender-ref ref="LOGSTASH" />
+    <appender-ref ref="CONSOLE" />
   </root>
 </configuration>

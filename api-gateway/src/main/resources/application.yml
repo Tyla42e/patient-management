@@ -48,5 +48,4 @@ logging:
       com:
         pm:
           apigateway: DEBUG
-    file:
-      name: logs/analyticsservice.log          
+      
